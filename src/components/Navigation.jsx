@@ -8,7 +8,6 @@ import {
   Container,
 } from 'reactstrap';
 import {
-  BrowserRouter as Router,
   Route,
   Switch,
   NavLink,
@@ -17,10 +16,8 @@ import Dashboard from './Dashboard';
 import Page404 from './Errors/404';
 import CreateEditBookContainer from './CreateEditBookContainer/CreateEditBookContainer';
 
-
 const Navigation = () => {
   return (
-    <Router>
       <div>
         <Navbar color="light" light expand="md">
           <NavbarBrand href="/">Bookstore</NavbarBrand>
@@ -47,13 +44,12 @@ const Navigation = () => {
         <Container className="content mt-8">
           <Switch>
             <Route exact path="/" component={Dashboard} />
-            <Route exact path="/editbook/:id" component={CreateEditBookContainer} />
-            <Route exact path="/addbook" component={CreateEditBookContainer} />
+            <Route path="/editbook/:id" component={CreateEditBookContainer} />
+            <Route path="/addbook" component={CreateEditBookContainer} />
             <Route component={Page404} />
           </Switch>
         </Container>
       </div>
-    </Router>
   );
 };
 

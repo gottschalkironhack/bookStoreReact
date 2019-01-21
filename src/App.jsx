@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getInitialData } from './actions/getInitialData';
+import { getInitialBookData } from './actions/getInitialBookData';
 import Navigation from './components/Navigation';
 
 class App extends Component {
   componentDidMount() {
     const { dispatch } = this.props;
-    dispatch(getInitialData());
+    dispatch(getInitialBookData());
   }
 
   render() {
     return (
       <div>
-        <Navigation />
+        <Navigation /> 
       </div>
     );
   }

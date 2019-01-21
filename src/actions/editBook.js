@@ -1,7 +1,7 @@
 import { UPDATE_BOOK } from './actionTypes';
 import { editBook } from '../services/BookApi';
-import { handleApiErrors } from './handleApiErrors';
-import { resetApiErrors } from './apiErrors';
+import { handleApiErrors } from './helpers/handleApiErrors';
+import { resetApiErrors, setApiErrors } from './apiErrors';
 import { resetApiSuccess, setApiSuccess } from './apiSuccess';
 
 const updateBookFromStore = (book, id) => ({
@@ -20,7 +20,8 @@ export const handleEditBook = (values, id) => dispatch => (
         dispatch(updateBookFromStore(updatedBook, id));
         resolve(updatedBook);
       }).catch((error) => {
-        handleApiErrors(error, 'Book could not be updated');
+        const errorMessage = handleApiErrors(error, 'Book could not be updated');
+        dispatch(setApiErrors(errorMessage));
         reject(error);
       });
   }));

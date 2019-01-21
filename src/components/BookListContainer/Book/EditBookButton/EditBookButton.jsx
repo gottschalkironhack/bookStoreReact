@@ -1,11 +1,16 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Button } from 'reactstrap';
 
-const EditBookButton = (props) => {
-  const { id } = props;
+const EditBookButton = ({id, editBook}) => {
   return (
-    <Button className="mt-1" onClick={() => props.editBook(id)}>Edit</Button>
+    <Button className="mt-1" onClick={() => editBook(id)}>Edit</Button>
   );
+};
+
+EditBookButton.propTypes = {
+  id: PropTypes.string.isRequired,
+  editBook: PropTypes.func.isRequired,
 };
 
 export default EditBookButton;

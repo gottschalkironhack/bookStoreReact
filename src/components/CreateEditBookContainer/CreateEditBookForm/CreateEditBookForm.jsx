@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import * as Yup from 'yup';
 import { Button, FormGroup, Label } from 'reactstrap';
 import { withFormik, Field, Form } from 'formik';
@@ -117,5 +118,13 @@ const Formik = withFormik({
     }
   },
 })(CreateEditBookForm);
+
+CreateEditBookForm.propTypes = {
+  id: PropTypes.string,
+  title: PropTypes.string,
+  author: PropTypes.string,
+  description: PropTypes.string,
+  price: PropTypes.number,
+};
 
 export default connect()(Formik);

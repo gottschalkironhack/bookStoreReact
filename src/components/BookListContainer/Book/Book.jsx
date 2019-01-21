@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   Col,
   Card,
@@ -11,14 +12,13 @@ import {
 import DeleteBook from './DeleteBookButton/DeleteBookButton';
 import EditBook from './EditBookButton/EditBookButton';
 
-const Book = (props) => {
-
-  const { handleDeleteBook, handleEditBook, book } = props;
+const Book = ({ handleDeleteBook, handleEditBook, book }) => {
+  
   const {
-    title,
     _id,
-    description,
+    title,
     author,
+    description,
     price,
   } = book;
 
@@ -46,6 +46,12 @@ const Book = (props) => {
       </Card>
     </Col>
   );
+};
+
+Book.propTypes = {
+  book: PropTypes.object.isRequired,
+  handleDeleteBook: PropTypes.func.isRequired,
+  handleEditBook: PropTypes.func.isRequired,
 };
 
 export default Book;

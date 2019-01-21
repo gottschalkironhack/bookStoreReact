@@ -2,36 +2,19 @@ import {
   ADD_BOOK,
   DELETE_BOOK,
   UPDATE_BOOK,
-  FETCH_BOOKS_BEGIN,
   FETCH_BOOKS_SUCCESS,
-  FETCH_BOOKS_FAILURE,
 } from '../actions/actionTypes';
 
 const initialState = {
   books: [],
-  loading: true,
 };
 
 export default function books(state = initialState, action) {
   switch (action.type) {
-    case FETCH_BOOKS_BEGIN:
-      return {
-        ...state,
-        loading: true,
-      };
-
     case FETCH_BOOKS_SUCCESS:
       return {
         ...state,
-        loading: false,
         books: action.books,
-      };
-
-    case FETCH_BOOKS_FAILURE:
-      return {
-        ...state,
-        loading: false,
-        books: [],
       };
 
     case ADD_BOOK:

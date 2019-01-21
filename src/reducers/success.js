@@ -1,3 +1,4 @@
+import { LOCATION_CHANGE } from 'react-router-redux';
 import {
   SET_API_SUCCESS,
   RESET_API_SUCCESS,
@@ -16,12 +17,15 @@ export default function success(state = initialState, action) {
         message: action.message,
         status: true,
       };
+
     case RESET_API_SUCCESS:
+    case LOCATION_CHANGE:
       return {
         ...state,
         message: null,
         status: false,
       };
+
     default:
       return state;
   }

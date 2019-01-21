@@ -1,19 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-import reducer from './reducers';
-import middleware from './middleware';
+import { ConnectedRouter } from 'connected-react-router';
+import configureStore from './storeConfig/configureStore';
+import { history } from './storeConfig/history';
 import 'babel-polyfill';
 import App from './App';
 import 'bootstrap/dist/css/bootstrap.css';
-import './index.css';
 
-const store = createStore(reducer, middleware);
+const store = configureStore();
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <ConnectedRouter history={history}>
+      <App />
+    </ConnectedRouter>
   </Provider>,
   document.getElementById('root'),
 );

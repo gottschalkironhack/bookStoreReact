@@ -1,7 +1,7 @@
 import { DELETE_BOOK } from './actionTypes';
 import { deleteBook } from '../services/BookApi';
-import { handleApiErrors } from './handleApiErrors';
-import { resetApiErrors } from './apiErrors';
+import { handleApiErrors } from './helpers/handleApiErrors';
+import { resetApiErrors, setApiErrors } from './apiErrors';
 import { resetApiSuccess, setApiSuccess } from './apiSuccess';
 
 const deleteBookFromStore = id => ({
@@ -17,6 +17,7 @@ export const handleDeleteBook = id => (dispatch) => {
       dispatch(setApiSuccess(`Book ${deletedBook.title} has been deleted succesfully`));
       dispatch(deleteBookFromStore(deletedBook._id));
     }).catch((error) => {
-      handleApiErrors(error);
+      const errorMessage = handleApiErrors(error, 'Book could not be deleted');
+      dispatch(setApiErrors(errorMessage));
     });
 };
