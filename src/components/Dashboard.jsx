@@ -1,24 +1,29 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 import { Row } from 'reactstrap';
 import BookListContainer from './BookListContainer/BookListContainer';
 import ErrorAlert from './Errors/ErrorAlert';
 
 const Dashboard = ({ loading, error }) => {
+  const { status, message } = error
+  console.log('message', message)
+  console.log('status', status)
   return (
-    <Row className="mt-5">
-      <h2 className="mb-5">Welcome to Dashboard</h2>
-      { loading === true
-        ? null
-        : <BookListContainer /> }
-      { error === true
-        ? <ErrorAlert error={ error.message} />
+  <Fragment>
+      { status === true
+        ? <ErrorAlert message={message} />
         : null }
-    </Row>
+      <Row className="mt-3">
+        <h2 className="mb-5">Welcome to Dashboard</h2>
+        { loading === true
+          ? null
+          : <BookListContainer /> }
+      </Row>
+    </Fragment>
   );
 };
 
-function mapStateToProps(props) {
+const mapStateToProps = (props) => {
   console.log('in dashbaord', props);
   console.log('in dashbaord', props.errors);
   return { 

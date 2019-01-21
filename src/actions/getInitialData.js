@@ -1,15 +1,18 @@
 import { getBookList } from '../services/BookApi';
-import { handleErrors } from './handleErrors';
+import { handleApiErrors } from './handleApiErrors';
 import { fetchBooksSuccess, fetchBooksBegin } from './receiveBooks';
+import { resetApiErrors } from './apiErrors';
+import { resetApiSuccess } from './apiSuccess';
 
 export const getInitialData = () => (dispatch) => {
+  dispatch(resetApiErrors());
   dispatch(fetchBooksBegin());
+  dispatch(resetApiSuccess());
   getBookList()
     .then((books) => {
-      console.log('books in initialData', books);
       dispatch(fetchBooksSuccess(books));
     })
     .catch((error) => {
-      handleErrors(error);
+      dispatch(handleApiErrors(error, 'Data could not be retrieved'));
     });
 };
