@@ -1,3 +1,5 @@
+## BookStore
+
 A simple BookStore App with React / Redux.
 Using merely Bootstrap CSS with reactstrap. Implemented Formik for form validation and Connected React Router to keep track of router location changes in Redux.
 
