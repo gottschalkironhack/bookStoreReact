@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Col } from 'reactstrap';
 import CreateEditBookForm from './CreateEditBookForm/CreateEditBookForm';
@@ -10,6 +9,12 @@ import SuccessAlert from '../Success/SuccessAlert';
 
 class CreateEditBookContainer extends Component {
   
+  shouldComponentUpdate(nextProps){
+    const { error, success } = this.props;
+    return nextProps.error.message !== error.message 
+    || nextProps.success.message !== success.message;
+  }
+
   render() {
     const bookId = this.props.location.state
     ? this.props.location.state.bookId
@@ -47,6 +52,6 @@ CreateEditBookContainer.propTypes = {
   books: PropTypes.array.isRequired,
   error: PropTypes.object.isRequired,
   success: PropTypes.object.isRequired,
-};
+}
 
-export default withRouter(connect(mapStateToProps)(CreateEditBookContainer));
+export default connect(mapStateToProps)(CreateEditBookContainer);

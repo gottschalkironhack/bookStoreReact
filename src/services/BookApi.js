@@ -19,7 +19,6 @@ export function getBookList() {
   });
 }
 
-
 export function editBook(bookData, id) {
   return new Promise((resolve, reject) => {
     axios.put(`${API_URL}/api/books/${id}`, bookData)
