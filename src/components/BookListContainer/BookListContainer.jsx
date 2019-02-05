@@ -24,7 +24,8 @@ class BookListContainer extends Component{
   }
 
   shouldComponentUpdate(nextProps){
-    return nextProps.books !== this.props.books;
+    return nextProps.books !== this.props.books
+    || this.idBookToEdit !== null;
   }
 
   render() {

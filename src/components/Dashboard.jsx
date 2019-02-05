@@ -9,12 +9,21 @@ import SuccessAlert from './Success/SuccessAlert';
 class Dashboard extends Component{
 
   shouldComponentUpdate(nextProps){
-    const { error, success } = this.props;
+    const { error, success, loading } = this.props;
+    console.log('nextProps.error.message !== error.message', nextProps.error.message !== error.message )
+    console.log('|| nextProps.success.message !== success.messagee', nextProps.success.message !== success.message )
+    console.log('|| nextProps.loading !== loading;', nextProps.loading !== loading)
+    console.log('all together shouldUpdate', nextProps.error.message !== error.message 
+    || nextProps.success.message !== success.message
+    || nextProps.loading !== loading)
     return nextProps.error.message !== error.message 
-    || nextProps.success.message !== success.message;
+    || nextProps.success.message !== success.message
+    || nextProps.loading !== loading;
+    
   };
 
   render(){
+    console.log('rerendered')
     const { error, success, loading } = this.props;
     const BookList = loading ? null : <BookListContainer/>;
     return (
