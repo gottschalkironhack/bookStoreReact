@@ -3,11 +3,16 @@ import PropTypes from 'prop-types';
 import { Button } from 'reactstrap';
 
 
-const DeleteBookButton = ({ id, deleteBook }) => {
-  return (
-    <Button onClick={() => deleteBook(id)}>Delete</Button>
-  );
-};
+const DeleteBookButton = ({ id, deleteBook }) => ({
+  render(){
+    return (
+      <Button onClick = {this.deleteBookFct}>Delete</Button>
+    );
+  },
+  deleteBookFct() {
+    deleteBook(id);
+  }
+});
 
 DeleteBookButton.propTypes = {
   id: PropTypes.string.isRequired,

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import {
   Navbar,
   Nav,
@@ -16,9 +16,10 @@ import Dashboard from './Dashboard';
 import Page404 from './Errors/404';
 import CreateEditBookContainer from './CreateEditBookContainer/CreateEditBookContainer';
 
+
 const Navigation = () => {
   return (
-      <div>
+      <Fragment>
         <Navbar color="light" light expand="md">
           <NavbarBrand href="/">Bookstore</NavbarBrand>
           <button
@@ -44,12 +45,12 @@ const Navigation = () => {
         <Container className="content mt-8">
           <Switch>
             <Route exact path="/" component={Dashboard} />
-            <Route path="/editbook/:id" component={CreateEditBookContainer} />
-            <Route path="/addbook" component={CreateEditBookContainer} />
+            <Route exact path="/editbook/:id" component={CreateEditBookContainer} />
+            <Route exact path="/addbook" component={CreateEditBookContainer} />
             <Route component={Page404} />
           </Switch>
         </Container>
-      </div>
+      </Fragment>
   );
 };
 

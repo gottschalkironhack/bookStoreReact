@@ -51,6 +51,7 @@ class BookListContainer extends Component{
 const mapStateToProps = (props) => {
   return { 
     books: props.books.books,
+    location: props.router.location,
   };
 }
 

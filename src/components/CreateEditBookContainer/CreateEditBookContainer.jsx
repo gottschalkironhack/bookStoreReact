@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { Col } from 'reactstrap';
 import CreateEditBookForm from './CreateEditBookForm/CreateEditBookForm';
 import ErrorAlert from '../Errors/ErrorAlert';
@@ -33,12 +35,18 @@ class CreateEditBookContainer extends Component {
     )}
 }
 
-const mapStateToProps = props => {
+const mapStateToProps = ({ books, errors, success }) => {
   return {
-    books: props.books.books,
-    error: props.errors,
-    success: props.success,
+    books: books.books,
+    error: errors,
+    success: success,
   }
 }
 
-export default connect(mapStateToProps)(CreateEditBookContainer);
+CreateEditBookContainer.propTypes = {
+  books: PropTypes.array.isRequired,
+  error: PropTypes.object.isRequired,
+  success: PropTypes.object.isRequired,
+};
+
+export default withRouter(connect(mapStateToProps)(CreateEditBookContainer));

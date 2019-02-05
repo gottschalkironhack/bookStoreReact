@@ -7,6 +7,9 @@ import ErrorAlert from './Errors/ErrorAlert';
 import SuccessAlert from './Success/SuccessAlert';
 
 const Dashboard = ({ loading, error, success }) => {
+
+  const BookListContaine = loading ? null : <BookListContainer/>;
+
   return (
     <Fragment>
       { error.status === true
@@ -17,10 +20,8 @@ const Dashboard = ({ loading, error, success }) => {
         : null }
       <Row className="mt-3">
         <h2 className="mb-5">Welcome to Dashboard</h2>
-        { loading === true
-          ? null
-          : <BookListContainer /> }
       </Row>
+      { BookListContaine }
     </Fragment>
   );
 };

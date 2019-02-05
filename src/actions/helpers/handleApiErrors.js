@@ -4,7 +4,7 @@ export const handleApiErrors = (error, userMessage = '') => {
   let errorMessage = '';
   switch (status) {
     case 401:
-      errorMessage = 'You are not authenticated.';
+      errorMessage = 'You are not authenticated';
       break;
     case 403:
       errorMessage = 'You are not authorized to access this ressource.';

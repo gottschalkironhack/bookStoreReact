@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import * as Yup from 'yup';
 import { Button, FormGroup, Label } from 'reactstrap';
@@ -76,6 +77,7 @@ const Formik = withFormik({
     price,
     _id,
   }) {
+    console.log('rerendered')
     return ({
       bookId: _id || '',
       bookTitle: title || '',
@@ -127,4 +129,4 @@ CreateEditBookForm.propTypes = {
   price: PropTypes.number,
 };
 
-export default connect()(Formik);
+export default withRouter(connect()(Formik));
