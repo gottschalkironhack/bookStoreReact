@@ -23,6 +23,10 @@ class BookListContainer extends Component{
     this.setState({ navigateToEditBook: true });
   }
 
+  shouldComponentUpdate(nextProps){
+    return nextProps.books !== this.props.books;
+  }
+
   render() {
     let idBookToEdit = this.idBookToEdit;
     if (this.state.navigateToEditBook === true) {
@@ -51,7 +55,6 @@ class BookListContainer extends Component{
 const mapStateToProps = (props) => {
   return { 
     books: props.books.books,
-    location: props.router.location,
   };
 }
 
