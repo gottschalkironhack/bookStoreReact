@@ -10,9 +10,11 @@ import SuccessAlert from '../Success/SuccessAlert';
 class CreateEditBookContainer extends Component {
   
   shouldComponentUpdate(nextProps){
-    const { error, success } = this.props;
+    const { error, success, books, location } = this.props;
     return nextProps.error.message !== error.message 
-    || nextProps.success.message !== success.message;
+    || nextProps.success.message !== success.message
+    || nextProps.location.pathname !== location.pathname
+    || nextProps.books !== books;
   }
 
   render() {
@@ -25,17 +27,22 @@ class CreateEditBookContainer extends Component {
     if(bookId){
       book = books.filter(book => book._id === bookId)
     }
+
+    const Error = error.status 
+    ? <ErrorAlert message={error.message} />  
+    : null;
+
+    const Success = success.status
+    ? <SuccessAlert message={success.message} />
+    : null;
+
     return(
       <Col sm="12" md="6" className="m-auto pt-5">
         <CreateEditBookForm 
           { ...book ? book = { ...book[0] } : null }
         />
-        { error.status === true
-          ? <ErrorAlert message={error.message} />
-          : null }
-        { success.status === true
-          ? <SuccessAlert message={success.message} />
-          : null }
+        { Error }
+        { Success }
       </Col>
     )}
 }

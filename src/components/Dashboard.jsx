@@ -10,30 +10,26 @@ class Dashboard extends Component{
 
   shouldComponentUpdate(nextProps){
     const { error, success, loading } = this.props;
-    console.log('nextProps.error.message !== error.message', nextProps.error.message !== error.message )
-    console.log('|| nextProps.success.message !== success.messagee', nextProps.success.message !== success.message )
-    console.log('|| nextProps.loading !== loading;', nextProps.loading !== loading)
-    console.log('all together shouldUpdate', nextProps.error.message !== error.message 
-    || nextProps.success.message !== success.message
-    || nextProps.loading !== loading)
     return nextProps.error.message !== error.message 
     || nextProps.success.message !== success.message
-    || nextProps.loading !== loading;
-    
+    || nextProps.loading !== loading; 
   };
 
   render(){
-    console.log('rerendered')
     const { error, success, loading } = this.props;
     const BookList = loading ? null : <BookListContainer/>;
+    const Error = error.status 
+    ? <ErrorAlert message={error.message} />  
+    : null;
+  
+    const Success = success.status
+    ? <SuccessAlert message={success.message} />
+    : null;
+
     return (
       <Fragment>
-        { error.status === true
-          ? <ErrorAlert message={error.message} />
-          : null }
-        { success.status === true
-          ? <SuccessAlert message={success.message} />
-          : null }
+        {Error}
+        {Success}
         <Row className="mt-3">
           <h2 className="mb-5">Welcome to Dashboard</h2>
         </Row>
