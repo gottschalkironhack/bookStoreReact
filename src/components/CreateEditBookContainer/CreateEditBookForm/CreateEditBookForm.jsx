@@ -124,6 +124,6 @@ CreateEditBookForm.propTypes = {
   author: PropTypes.string,
   description: PropTypes.string,
   price: PropTypes.number,
-}
+};
 
 export default connect()(Formik);

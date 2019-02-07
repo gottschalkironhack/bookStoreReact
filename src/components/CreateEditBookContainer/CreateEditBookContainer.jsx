@@ -59,6 +59,6 @@ CreateEditBookContainer.propTypes = {
   books: PropTypes.array.isRequired,
   error: PropTypes.object.isRequired,
   success: PropTypes.object.isRequired,
-}
+};
 
 export default connect(mapStateToProps)(CreateEditBookContainer);

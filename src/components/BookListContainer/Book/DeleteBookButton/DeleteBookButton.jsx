@@ -16,6 +16,6 @@ const DeleteBookButton = ({ id, deleteBook }) => ({
 DeleteBookButton.propTypes = {
   id: PropTypes.string.isRequired,
   deleteBook: PropTypes.func.isRequired,
-}
+};
 
 export default DeleteBookButton;

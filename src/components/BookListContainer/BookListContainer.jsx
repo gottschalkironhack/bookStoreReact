@@ -61,6 +61,6 @@ const mapStateToProps = (props) => {
 
 BookListContainer.propTypes = {
   books: PropTypes.array.isRequired,
-}
+};
 
 export default connect(mapStateToProps)(BookListContainer);

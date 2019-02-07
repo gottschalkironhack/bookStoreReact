@@ -1,20 +1,30 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import { routerMiddleware } from 'connected-react-router';
-import reducer from '../reducers';
-import logger from './logger';
 import { history } from './history';
+import logger from './logger';
+import reducer from '../reducers';
 
 export default function configureStore() {
-  const store = createStore(
+  if (process.env.NODE_ENV !== 'production') {
+    return createStore(
+      reducer,
+      compose(
+        applyMiddleware(
+          routerMiddleware(history),
+          thunk,
+          logger,
+        ),
+      ),
+    );
+  }
+  return createStore(
     reducer,
     compose(
       applyMiddleware(
         routerMiddleware(history),
         thunk,
-        logger,
       ),
     ),
   );
-  return store;
 }

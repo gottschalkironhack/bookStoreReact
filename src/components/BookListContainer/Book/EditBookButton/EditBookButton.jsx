@@ -16,6 +16,6 @@ const EditBookButton = ({ id, editBook }) => ({
 EditBookButton.propTypes = {
   id: PropTypes.string.isRequired,
   editBook: PropTypes.func.isRequired,
-}
+};
 
 export default EditBookButton;
